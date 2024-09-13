@@ -11,11 +11,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (prevUsername && !prevUsername.includes('o') && !prevUsername.includes('O') && (username.includes('o') || username.includes('O'))) {
+    if (username.length > prevUsername.length && (username.slice(-1) === 'o' || username.slice(-1) === 'O')) {
       alert('Por favor, ¡Nombres de usuario sin la letra o!');
     }
     setPrevUsername(username);
-  }, [username])
+  }, [username]);
 
   const handleRegisterClick = () => {
     if (username === '') {
