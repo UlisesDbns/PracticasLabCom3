@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -8,6 +8,14 @@ const Login = () => {
     setUsername(event.target.value);
     setUsernameDisplay(event.target.value);
   };
+
+  useEffect(() => {
+    if (username.includes('o') || username.includes('O')) {
+      alert('Por favor, ¡Nombres de usuario sin la letra o!');
+      setUsername('');
+      setUsernameDisplay('');
+    }
+  }, [username]);
 
   const handleRegisterClick = () => {
     if (username === '') {
