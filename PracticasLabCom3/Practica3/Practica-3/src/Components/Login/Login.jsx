@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [usernameDisplay, setUsernameDisplay] = useState('');
+  const [prevUsername, setPrevUsername] = useState('');
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -10,12 +11,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (username.includes('o') || username.includes('O')) {
+    if (prevUsername && !prevUsername.includes('o') && !prevUsername.includes('O') && (username.includes('o') || username.includes('O'))) {
       alert('Por favor, ¡Nombres de usuario sin la letra o!');
-      setUsername('');
-      setUsernameDisplay('');
     }
-  }, [username]);
+    setPrevUsername(username);
+  }, [username])
 
   const handleRegisterClick = () => {
     if (username === '') {
